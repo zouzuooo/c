@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: micoing
- * Date: 1/06/19
- * Time: 10:55 AM
- */
 
 
 /*  TODO 1
@@ -14,6 +8,11 @@
  */
 
 /* TODO 2
+	列出一段自认为最擅长的业务场景，  和简短的伪代码，  并加以说明
+
+*/
+
+/* TODO 3
  *
  * 尝试优化（修改时使用伪代码即可）， 并说明理由
  *
@@ -39,15 +38,15 @@ foreach ($Banks as $bank) {
     $all_orders = isset($all_orders_obg[$key]) ? $all_orders_obg[$key]['total_count'] : 0;
     $succ_orders = isset($all_orders_obg[$key]) ? $all_orders_obg[$key]['success_count'] : 0;
     $all_orders = Deposit::where('deposit_channel', $paymentName)
-                    ->where('deposit_mode', $bank->mode)
-                    ->whereBetween('created_at', [$begin, $now])
-                    ->count();
+        ->where('deposit_mode', $bank->mode)
+        ->whereBetween('created_at', [$begin, $now])
+        ->count();
     if (!$all_orders) continue;  //没有充值订单,跳出本次循环
     $succ_orders = Deposit::where('deposit_channel', $paymentName)
-                    ->where('deposit_mode', $bank->mode)
-                    ->where('status', 3)
-                    ->whereBetween('created_at', [$begin, $now])
-                    ->count();
+        ->where('deposit_mode', $bank->mode)
+        ->where('status', 3)
+        ->whereBetween('created_at', [$begin, $now])
+        ->count();
 
 
     if ($all_orders === 0) {
@@ -74,7 +73,6 @@ if ($msg) {
     $res = $this->curl($url , $pData);
 }
 
-
-/* TODO 3
+/* TODO 4
  * 举出3～5个自认为最实用/有用的Linux命令，  并说一说为什么
  */
